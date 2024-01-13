@@ -24,14 +24,11 @@
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 {{ if eq .machine "work" }}
-# work macbook
 [includeIf "gitdir:~/dev/personal/"]
     path = .gitconfig-personal
 [includeIf "gitdir:~/dev/malfini/"]
     path = .gitconfig-work
 {{ else if eq .machine "home" }}
-# home mackbook
 [include]
     path = .gitconfig-personal
 {{ end }}
-

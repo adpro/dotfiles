@@ -1,0 +1,22 @@
+Host github.com
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_personal
+    UserKnownHostsFile ~/.ssh/known_hosts_personal
+    IdentitiesOnly yes
+    UseKeychain yes
+    AddKeysToAgent yes
+
+Host ssh.dev.azure.com
+    HostName ssh.dev.azure.com
+    User git
+    IdentityFile ~/.ssh/id_rsa_work2
+    UserKnownHostsFile ~/.ssh/known_hosts_work
+    IdentitiesOnly yes
+    UseKeychain yes
+    AddKeysToAgent yes
+
+Host *.adler.local
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+    LogLevel=error
