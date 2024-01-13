@@ -1,0 +1,37 @@
+[alias]
+	st = status
+	ch = checkout
+	br = branch
+	cm = commit -m
+	pom = push -u origin master
+	unstage = reset HEAD --
+	s = status
+	a = !git add . && git status
+	au = !git add -u . && git status
+	aac = !git add . && git add -u . && git status
+	c = commit
+	ca = commit --amend
+	last = log -1 HEAD
+	l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	ll = log --stat --abbrev-commit
+	lg = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	llg = log --color --graph --pretty=format:'%C(bold white)%H %d%Creset%n%s%n%+b%C(bold blue)%an <%ae>%Creset %C(bold green)%cr (%ci)' --abbrev-commit
+	pr = "!f() { exec az repos pr \"$@\"; }; f"
+	repo = "!f() { exec az repos \"$@\"; }; f"
+	i = ls-files . --ignored --exclude-standard --others
+	nt = ls-files . --exclude-standard --others
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+{{ if eq .chezmoidata.toml.machine "work" }}
+# work macbook
+[includeIf "gitdir:~/dev/personal/"]
+    path = .gitconfig-personal
+[includeIf "gitdir:~/dev/malfini/"]
+    path = .gitconfig-work
+{{ else if eq .chezmoidata.toml.machine "home" }}
+# home mackbook
+[includeIf "gitdir:~/dev/"]
+    path = .gitconfig-personal
+{{ end }}
+

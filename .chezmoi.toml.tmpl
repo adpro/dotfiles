@@ -1,0 +1,10 @@
+{{- $machine := promptStringOnce . "machine" "Is this machine for work or home" -}}
+{{- $name := promptStringOnce . "name" "Your name" -}}
+{{- $personal-email := promptStringOnce . "personal-email" "Personal email address" -}}
+{{- $work-email := promptStringOnce . "work-email" "Work email address" -}}
+
+[data]
+    machine = {{ $machine | quote }}
+    name = {{ $name | quote }}
+    personal-email = {{ $personal-email | quote }}
+    work-email = {{ $work-email | quote }}
