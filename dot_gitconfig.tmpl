@@ -31,7 +31,7 @@
     path = .gitconfig-work
 {{ else if eq .chezmoidata.toml.machine "home" }}
 # home mackbook
-[includeIf "gitdir:~/dev/"]
+[include]
     path = .gitconfig-personal
 {{ end }}
 
