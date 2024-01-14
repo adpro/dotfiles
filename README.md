@@ -45,7 +45,3 @@ This `dotfiles` repository exists for setup of Macbooks. It uses [chezmoi](https
     - Set up sync folders
 - Install Python from pyenv
     - Use guide on [Tidy Tales - Python Setup](https://tidytales.ca/series/2023-01-24_reproducible-data-science/posts/python-setup)
-
-
-### ssh keys
-
