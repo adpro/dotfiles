@@ -3,6 +3,8 @@
 {{- $personalEmail := promptStringOnce . "personalEmail" "Personal email address" -}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work email address" -}}
 {{- $companyName := promptStringOnce . "companyName" "Company name in lowercase" -}}
+{{- $workLocalDomain := promptStringOnce . "workLocalDomain" "Work local domain (lowercase)" -}}
+{{- $workAdminAccountName:= promptStringOnce . "workAdminAccountName" "Work admin account name" -}}
 {{- $awsAccessMgmt := promptStringOnce . "awsAccessMgmt" "awsAccessMgmt" -}}
 {{- $awsSecretMgmt := promptStringOnce . "awsSecretMgmt" "awsSecretMgmt" -}}
 {{- $awsAccessPlayground := promptStringOnce . "awsAccessPlayground" "awsAccessPlayground" -}}
@@ -11,6 +13,9 @@
 {{- $awsSecretMaster := promptStringOnce . "awsSecretMaster" "awsSecretMaster" -}}
 {{- $awsAccessFlash := promptStringOnce . "awsAccessFlash" "awsAccessFlash" -}}
 {{- $awsSecretFlash := promptStringOnce . "awsSecretFlash" "awsSecretFlash" -}}
+{{- $azuredevopsSvcToken := promptStringOnce . "azuredevopsSvcToken" "AZUREDEVOPS_ADMIN_SVC_TOKEN" -}}
+{{- $slackAdminSvcToken := promptStringOnce . "slackAdminSvcToken" "SLACK_ADMIN_SVC_TOKEN" -}}
+{{- $azuredevopsExtGitPat := promptStringOnce . "azuredevopsExtGitPat" "AZURE_DEVOPS_EXT_GIT_SOURCE_PASSWORD_OR_PAT" -}}
 
 [data]
     machine = {{ $machine | quote }}
@@ -26,3 +31,8 @@
     awsSecretMaster = {{ $awsSecretMaster | quote }}
     awsAccessFlash = {{ $awsAccessFlash | quote }}
     awsSecretFlash = {{ $awsSecretFlash | quote }}
+    azuredevopsSvcToken = {{ $azuredevopsSvcToken | quote }}
+    slackAdminSvcToken = {{ $slackAdminSvcToken | quote }}
+    azuredevopsExtGitPat = {{ $azuredevopsExtGitPat | quote }}
+    workLocalDomain = {{ $workLocalDomain | quote }}
+    workAdminAccountName = {{ $workAdminAccountName | quote }}

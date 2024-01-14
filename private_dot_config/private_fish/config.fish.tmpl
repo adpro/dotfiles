@@ -1,0 +1,10 @@
+set -Ux LSCOLORS gxfxcxdxbxegedabagaced
+
+source ~/.config/fish/.fish_aliases
+source ~/.config/fish/.fish_variables
+
+starship init fish | source
+
+status --is-interactive; and source (pyenv init -|psub)
+
+fish_add_path ~/.dotnet/tools

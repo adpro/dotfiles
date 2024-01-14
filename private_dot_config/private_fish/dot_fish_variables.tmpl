@@ -1,0 +1,5 @@
+# set -xg JAVA_HOME (/usr/libexec/java_home -v 1.8)
+set -xg AZUREDEVOPS_ADMIN_SVC_TOKEN "{{ .azuredevopsSvcToken }}"
+set -xg AZUREDEVOPS_URL "https://dev.azure.com/{{ .companyName }}/"
+set -xg SLACK_ADMIN_SVC_TOKEN "{{ .slackAdminSvcToken }}"
+set -xg AZURE_DEVOPS_EXT_GIT_SOURCE_PASSWORD_OR_PAT "{{ .azuredevopsExtGitPat }}"

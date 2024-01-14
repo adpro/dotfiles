@@ -1,0 +1,8 @@
+function sshadl --description 'ssh to {{ .workLocalDomain }} servers'
+    set server (string join '' $argv[1] '.{{ .workLocalDomain }}')
+    set var (string join '@' "{{ .workAdminAccountName }}" $server)
+    set_color yellow
+    echo "Calling 'ssh $var'"
+    set_color normal
+    command ssh $var
+end
