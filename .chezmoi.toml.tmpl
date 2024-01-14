@@ -2,9 +2,11 @@
 {{- $name := promptStringOnce . "name" "Your name" -}}
 {{- $personalEmail := promptStringOnce . "personalEmail" "Personal email address" -}}
 {{- $workEmail := promptStringOnce . "workEmail" "Work email address" -}}
+{{- $companyName := promptStringOnce . "companyName" "Company name in lowercase" -}}
 
 [data]
     machine = {{ $machine | quote }}
     name = {{ $name | quote }}
     personalEmail = {{ $personalEmail | quote }}
     workEmail = {{ $workEmail | quote }}
+    companyName = {{ $companyName | quote }}

@@ -26,7 +26,7 @@
 {{ if eq .machine "work" }}
 [includeIf "gitdir:~/dev/personal/"]
     path = .gitconfig-personal
-[includeIf "gitdir:~/dev/malfini/"]
+[includeIf "gitdir:~/dev/{{- .companyName -}}/"]
     path = .gitconfig-work
 {{ else if eq .machine "home" }}
 [include]

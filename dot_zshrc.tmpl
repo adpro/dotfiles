@@ -96,7 +96,7 @@ fi
 # ======
 {{ if eq .machine "work" }}
 AZUREDEVOPS_ADMIN_SVC_TOKEN="xxx"
-AZUREDEVOPS_URL="https://dev.azure.com/malfini/"
+AZUREDEVOPS_URL="https://dev.azure.com/{{- .companyName -}}/"
 SLACK_ADMIN_SVC_TOKEN="xxx"
 {{ end }}
 
