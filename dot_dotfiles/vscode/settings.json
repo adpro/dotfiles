@@ -1,0 +1,31 @@
+{
+    "gitlens.defaultDateShortFormat": "YYYY-MM-DD hh:mm",
+    "gitlens.views.repositories.files.layout": "tree",
+    "search.useGlobalIgnoreFiles": true,
+    "editor.renderControlCharacters": true,
+    "mssql.connections": [
+        {
+            "server": "aws-mssql-instance-demo-alesd.cfqw77pg0k0e.eu-west-1.rds.amazonaws.com",
+            "database": "",
+            "authenticationType": "SqlLogin",
+            "user": "administrator",
+            "password": "",
+            "emptyPasswordInput": false,
+            "savePassword": false
+        }
+    ],
+    "cSpell.language": "en-GB,cs",
+    "editor.minimap.enabled": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "editor.renderWhitespace": "none",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "git.confirmSync": false,
+    "nginx-conf-hint.format.align": true,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "editor.fontSize": 14
+}

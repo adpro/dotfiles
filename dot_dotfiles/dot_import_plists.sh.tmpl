@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+# Import Moom preferences
+defaults import com.manytricks.Moom ~/.local/share/chezmoi/dot_dotfiles/moom/Moom.plist
+
+# Set iTerm2 settings for custom config
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
+# Tell iTerm2 to use the custom preferences in the directory
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true

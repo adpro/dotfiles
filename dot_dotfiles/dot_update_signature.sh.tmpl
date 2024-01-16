@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+
+echo "🖋 Updating {{ .companyName }} Outlook signature..."
+
+USER=daniel
+MOUNTDIR="/Users/${USER}/Downloads/MlfAutoSignatures"
+SERVER=10.1.1.126 	# {{ workLocalDomain }}
+SERVERPATH=/SYSVOL/{{ workLocalDomain }}/AutoSignatures
+SMBPATH="//${USER}@${SERVER}${SERVERPATH}"
+LOCALPATH="/Users/${USER}/Downloads/"
+FILE1="${USER}.html"
+FILE2="${USER}_response.htm"
+TIMESTAMP=$(date)
+
+STATE=0
+
+echo "Mounting shared server..."
+mkdir $MOUNTDIR && \
+mount -t smbfs $SMBPATH $MOUNTDIR
+STATE=1
+
+if [ "$STATE" -eq "1" ]; then
+	echo "Copying signatures files..."
+	cp "${MOUNTDIR}/${FILE1}" "${LOCALPATH}${FILE1}" && \
+	cp "${MOUNTDIR}/${FILE2}" "${LOCALPATH}${FILE2}"
+	STATE=2
+fi
+
+
+echo "Unmounting shared server..."
+umount $MOUNTDIR && \
+rm -d $MOUNTDIR
+
+if [ $STATE -eq 2 ]; then
+
+	echo "Replacing fonts to Palatino..."
+	if [[ -f "${LOCALPATH}${FILE1}" ]]; then
+		sed -i '' 's/font-family: Arial;/font-family: Palatino, Arial;/g' "${LOCALPATH}${FILE1}"
+	fi
+
+	if [[ -f "${LOCALPATH}${FILE2}" ]]; then
+		sed -i '' 's/font-family: Arial;/font-family: Palatino, Arial;/g' "${LOCALPATH}${FILE2}"
+	fi
+	STATE=3
+fi
+
+
+download_signature() {
+	echo "downloading signature..."
+
+	
+	SIGNATURE_URL="file://${LOCALPATH}${FILE1}"
+
+	if [[ -z "$SIGNATURE_URL" ]]; then
+		echo "missing url"
+		exit 1
+	fi
+
+	SIGNATURE_HTML=`curl -s "$SIGNATURE_URL"`
+
+	if [[ -z "$SIGNATURE_HTML" ]]; then
+		echo "empty signature url response"
+		exit 1
+	fi
+
+	echo "done."
+}
+
+setup_signature() {
+	echo "setting up signature..."
+
+	SIGNATURE_HTML_ESCAPED=`echo "$SIGNATURE_HTML" | sed -e 's/"/\\\"/g'`
+
+	osascript <<END
+tell application id "com.microsoft.Outlook"
+	make new signature with properties {name:"signature-new-email-$TIMESTAMP", content:"$SIGNATURE_HTML_ESCAPED"}
+end tell
+END
+
+# 	if [ -f "$HOME/Library/Preferences/com.microsoft.Outlook.plist" ]; then
+# 		defaults write "$HOME/Library/Preferences/com.microsoft.Outlook.plist" "AutomaticallyDownloadExternalContent" -int 2
+# 		defaults write "$HOME/Library/Preferences/com.microsoft.Outlook.plist" "Send Pictures With Document" -int 0
+# 	fi
+
+# 	if [ -f "$HOME/Library/Containers/com.microsoft.Outlook/Data/Library/Preferences/com.microsoft.Outlook.plist" ]; then
+# 		defaults write "$HOME/Library/Containers/com.microsoft.Outlook/Data/Library/Preferences/com.microsoft.Outlook.plist" "AutomaticallyDownloadExternalContent" -int 2
+# 		defaults write "$HOME/Library/Containers/com.microsoft.Outlook/Data/Library/Preferences/com.microsoft.Outlook.plist" "Send Pictures With Document" -int 0
+# 	fi
+
+# 	echo "done."
+}
+
+if [ $STATE -eq 3 ]; then
+	echo "Adding signature to Outlook..."
+	download_signature
+	setup_signature
+	STATE=4
+fi
+
+if [ $STATE -ge 2 ]; then
+	echo "Removing temporary signatures files..."
+	rm "${LOCALPATH}${FILE1}"
+	rm "${LOCALPATH}${FILE2}"
+fi
+
+if [ $STATE -eq 4 ]; then
+	echo "🟠 Go to 'Outlook > Preferences > Signatures' and change default new mail signature."
+fi
