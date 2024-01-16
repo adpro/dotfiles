@@ -4,8 +4,8 @@ echo "🖋 Updating {{ .companyName }} Outlook signature..."
 
 USER=daniel
 MOUNTDIR="/Users/${USER}/Downloads/MlfAutoSignatures"
-SERVER=10.1.1.126 	# {{ workLocalDomain }}
-SERVERPATH=/SYSVOL/{{ workLocalDomain }}/AutoSignatures
+SERVER=10.1.1.126 	# {{ .workLocalDomain }}
+SERVERPATH=/SYSVOL/{{ .workLocalDomain }}/AutoSignatures
 SMBPATH="//${USER}@${SERVER}${SERVERPATH}"
 LOCALPATH="/Users/${USER}/Downloads/"
 FILE1="${USER}.html"
