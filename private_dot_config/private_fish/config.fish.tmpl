@@ -1,5 +1,7 @@
 set -Ux LSCOLORS gxfxcxdxbxegedabagaced
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 source ~/.config/fish/.fish_aliases
 source ~/.config/fish/.fish_variables
 
@@ -8,3 +10,8 @@ starship init fish | source
 status --is-interactive; and source (pyenv init -|psub)
 
 fish_add_path ~/.dotnet/tools
+fish_add_path "/Users/daniel/Library/Application Support/JetBrains/Toolbox/scripts"
+
+
+# Added by Toolbox App
+# export PATH="$PATH:/Users/daniel/Library/Application Support/JetBrains/Toolbox/scripts"
