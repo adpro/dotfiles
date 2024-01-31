@@ -6,6 +6,9 @@ add_newline = true
 # success_symbol = "[➜](bold green) "     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # error_symbol = '[](bold red) '
 
+[directory]
+fish_style_pwd_dir_length = 1
+
 [status]
 symbol = "✕"
 disabled = false
