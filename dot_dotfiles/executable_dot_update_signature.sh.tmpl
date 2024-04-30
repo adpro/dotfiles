@@ -5,7 +5,7 @@ echo "🖋 Updating {{ .companyName }} Outlook signature..."
 USER=daniel
 MOUNTDIR="/Users/${USER}/Downloads/MlfAutoSignatures"
 SERVER=10.1.1.126 	# {{ .workLocalDomain }}
-SERVERPATH=/SYSVOL/{{ .workLocalDomain }}/AutoSignatures
+SERVERPATH=/SYSVOL/{{ .workLocalDomain }}/AutoSignatures # \\adler.local\sysvol\adler.local\AutoSignatures
 SMBPATH="//${USER}@${SERVER}${SERVERPATH}"
 LOCALPATH="/Users/${USER}/Downloads/"
 FILE1="${USER}.html"
