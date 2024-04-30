@@ -19,7 +19,7 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    "editor.renderWhitespace": "none",
+    "editor.renderWhitespace": "all",
     "diffEditor.ignoreTrimWhitespace": false,
     "security.workspace.trust.untrustedFiles": "newWindow",
     "git.confirmSync": false,
